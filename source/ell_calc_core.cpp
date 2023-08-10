@@ -35,7 +35,7 @@ auto EllCalcCore::calc_parallel_cut(const double &beta0, const double &beta1, co
     auto bav = bsum / 2.0;
     auto tempn = this->_half_n * bsumn * (beta1 - beta0);
     auto xi = std::sqrt(t0n * t1n + tempn * std::move(tempn));
-    auto sigma = this->_cst3 + (1.0 - b0b1n - xi) / (bsumn * bav) / this->_n_plus_1;
+    auto sigma = this->_cst3 + (1.0 + b0b1n - xi) / (bsumn * bav) / this->_n_plus_1;
     auto&& rho = sigma * bav;
     auto&& delta = this->_cst1 * ((t0n + t1n) / 2.0 + std::move(xi) / this->_n_f);
     return {rho, std::move(sigma), delta};
