@@ -1,9 +1,7 @@
-#include <ellalgo/ell_calc_core.hpp>    // for EllCalcCore
-
 #include <cassert>
-#include <cmath>                   // for sqrt
-#include <tuple>                   // for tuple
-
+#include <cmath>                      // for sqrt
+#include <ellalgo/ell_calc_core.hpp>  // for EllCalcCore
+#include <tuple>                      // for tuple
 
 /**
  * @brief Parallel Cut
@@ -24,8 +22,8 @@
  * 2. sigma: A double value representing the calculated sigma.
  * 3. delta: A double value representing the calculated delta.
  */
-auto EllCalcCore::calc_parallel_cut(const double &beta0, const double &beta1, const double &tsq) const
-    -> std::tuple<double, double, double> {
+auto EllCalcCore::calc_parallel_cut(const double& beta0, const double& beta1,
+                                    const double& tsq) const -> std::tuple<double, double, double> {
     auto b0b1 = beta0 * beta1;
     auto b0b1n = b0b1 / tsq;
     auto t1n = 1.0 - beta1 * (beta1 / tsq);
@@ -59,7 +57,7 @@ auto EllCalcCore::calc_parallel_cut(const double &beta0, const double &beta1, co
  * 2. sigma: A double value representing the calculated sigma.
  * 3. delta: A double value representing the calculated delta.
  */
-auto EllCalcCore::calc_parallel_central_cut(const double &beta1, const double &tsq) const
+auto EllCalcCore::calc_parallel_central_cut(const double& beta1, const double& tsq) const
     -> std::tuple<double, double, double> {
     auto b1sqn = beta1 * beta1 / tsq;
     auto temp = this->_half_n * b1sqn;
@@ -70,23 +68,22 @@ auto EllCalcCore::calc_parallel_central_cut(const double &beta1, const double &t
     return {rho, std::move(sigma), delta};
 }
 
-
 /**
  * @brief Calculate new ellipsoid under Non-central Cut
  *
- * The function `_calc_bias_cut` calculates and returns the values of rho, sigma,
+ * The function `calc_bias_cut` calculates and returns the values of rho, sigma,
  * and delta based on the given beta, tau, and gamma values under the bias-cut:
  *
  *        g' (x - xc) + beta \le 0
  *
- * @param[in] beta The parameter "beta" represents a value used in the calculation. 
+ * @param[in] beta The parameter "beta" represents a value used in the calculation.
  * @param[in] tau The parameter "tau" represents a value used in the calculation.
  * @return A tuple containing the following values:
  * 1. rho
  * 2. sigma
  * 3. delta
  */
-auto EllCalcCore::calc_bias_cut(const double &beta, const double &tau) const
+auto EllCalcCore::calc_bias_cut(const double& beta, const double& tau) const
     -> std::tuple<double, double, double> {
     auto alpha = beta / tau;
     auto gamma = tau + this->_n_f * beta;
@@ -113,7 +110,7 @@ auto EllCalcCore::calc_bias_cut(const double &beta, const double &tau) const
  * 2. sigma
  * 3. delta
  */
-auto EllCalcCore::calc_central_cut(const double &tau) const -> std::tuple<double, double, double> {
+auto EllCalcCore::calc_central_cut(const double& tau) const -> std::tuple<double, double, double> {
     auto&& sigma = this->_cst2;
     auto&& rho = tau / this->_n_plus_1;
     auto&& delta = this->_cst1;

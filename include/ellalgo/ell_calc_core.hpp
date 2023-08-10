@@ -21,7 +21,7 @@ class EllCalcCore {
     const double _cst3;
 
     /**
-     * @brief Construct a new EllCalcCoreobject
+     * @brief Construct a new EllCalcCore object
      *
      * @param[in] E
      */
@@ -29,7 +29,7 @@ class EllCalcCore {
 
   public:
     /**
-     * @brief Construct a new EllCalcCoreobject
+     * @brief Construct a new EllCalcCore object
      *
      * @tparam V
      * @tparam U
@@ -48,20 +48,20 @@ class EllCalcCore {
 
   public:
     /**
-     * @brief Construct a new EllCalcCoreobject
+     * @brief Construct a new EllCalcCore object
      *
      * @param[in] E (move)
      */
     EllCalcCore(EllCalcCore &&E) = default;
 
     /**
-     * @brief Destroy the EllCalcCoreobject
+     * @brief Destroy the EllCalcCore object
      *
      */
     ~EllCalcCore() {}
 
     /**
-     * @brief Construct a new EllCalcCoreobject
+     * @brief Construct a new EllCalcCore object
      *
      * To avoid accidentally copying, only explicit copy is allowed
      *
