@@ -24,11 +24,11 @@ auto EllCalcCore::calc_parallel_cut(const double& beta0, const double& beta1,
     auto bsumn = bsum / tsq;
     auto bav = bsum / 2.0;
     auto tempn = this->_half_n * bsumn * (beta1 - beta0);
-    auto xi = std::sqrt(t0n * t1n + tempn * std::move(tempn));
+    auto xi = std::sqrt(t0n * t1n + tempn * tempn);
     auto sigma = this->_cst3 + (1.0 + b0b1n - xi) / (bsumn * bav) / this->_n_plus_1;
     auto&& rho = sigma * bav;
-    auto&& delta = this->_cst1 * ((t0n + t1n) / 2.0 + std::move(xi) / this->_n_f);
-    return {rho, std::move(sigma), delta};
+    auto&& delta = this->_cst1 * ((t0n + t1n) / 2.0 + xi / this->_n_f);
+    return {rho, sigma, delta};
 }
 
 /**
@@ -50,11 +50,11 @@ auto EllCalcCore::calc_parallel_central_cut(const double& beta1, const double& t
     -> std::tuple<double, double, double> {
     auto b1sqn = beta1 * beta1 / tsq;
     auto temp = this->_half_n * b1sqn;
-    auto xi = std::sqrt(1.0 - b1sqn + temp * std::move(temp));
+    auto xi = std::sqrt(1.0 - b1sqn + temp * temp);
     auto&& delta = this->_cst1 * (1.0 - b1sqn / 2.0 + xi / this->_n_f);
-    auto sigma = this->_cst3 + this->_cst2 * (1.0 - std::move(xi)) / std::move(b1sqn);
+    auto sigma = this->_cst3 + this->_cst2 * (1.0 - xi) / b1sqn;
     auto&& rho = sigma * beta1 / 2;
-    return {rho, std::move(sigma), delta};
+    return {rho, sigma, delta};
 }
 
 /**
@@ -77,8 +77,8 @@ auto EllCalcCore::calc_bias_cut(const double& beta, const double& tau) const
     auto alpha = beta / tau;
     auto gamma = tau + this->_n_f * beta;
     auto&& sigma = this->_cst2 * gamma / (tau + beta);
-    auto&& rho = std::move(gamma) / this->_n_plus_1;
-    auto&& delta = this->_cst1 * (1.0 - alpha * std::move(alpha));
+    auto&& rho = gamma / this->_n_plus_1;
+    auto&& delta = this->_cst1 * (1.0 - alpha * alpha);
     return {rho, sigma, delta};
 }
 
