@@ -19,13 +19,6 @@ class EllCalcCore {
     const double _cst1;
     const double _cst2;
 
-    /**
-     * @brief Construct a new EllCalcCore object
-     *
-     * @param[in] E
-     */
-    // auto operator=(const EllCalcCore& E) const -> EllCalcCore& = delete;
-
   public:
     /**
      * @brief Construct a new EllCalcCore object
@@ -36,7 +29,7 @@ class EllCalcCore {
      * @param mq
      * @param x
      */
-    EllCalcCore(size_t ndim)
+    explicit EllCalcCore(size_t ndim)
         : _n_f{double(ndim)},
           _n_plus_1{_n_f + 1.0},
           _half_n{_n_f / 2.0},
@@ -44,7 +37,6 @@ class EllCalcCore {
           _cst1{_n_sq / (_n_sq - 1.0)},
           _cst2{2.0 / _n_plus_1} {}
 
-  public:
     /**
      * @brief Construct a new EllCalcCore object
      *
@@ -56,7 +48,7 @@ class EllCalcCore {
      * @brief Destroy the EllCalcCore object
      *
      */
-    ~EllCalcCore() {}
+    ~EllCalcCore() = default;
 
     /**
      * @brief Construct a new EllCalcCore object
