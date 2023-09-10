@@ -9,10 +9,9 @@ echo Initializing...
 #Create a new env called arcw
 # conda create --prefix /workspace/conda/arcw python=3.6 &&
 # echo "conda activate /workspace/conda/arcw" >> ~/.bashrc &&
-export HOME=/workspace
-source ~/.xmake/profile
+source /workspace/.xmake/profile
 export CONDA_PREFIX=/workspace/miniconda3
-export PATH=$CONDA_PREFIX/bin:$PATH && source ~/.bashrc
+export PATH=$CONDA_PREFIX/bin:$PATH
 export CPM_SOURCE_CACHE=$HOME/.cache/CPM
 
 #Install conda packages for to run jupyterlab
